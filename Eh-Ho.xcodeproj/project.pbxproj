@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -46,6 +46,7 @@
 		11D43F7322EC47B10053933A /* SendMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11D43F7122EC47B10053933A /* SendMessageViewController.xib */; };
 		11D43F7522EC47C10053933A /* SendMessageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D43F7422EC47C10053933A /* SendMessageRouter.swift */; };
 		11D43F7722EC47D60053933A /* SendMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D43F7622EC47D60053933A /* SendMessageViewModel.swift */; };
+		11D4AE702330297700C21C2C /* Eh-HoDatabase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 11D4AE6D2330297700C21C2C /* Eh-HoDatabase.xcdatamodeld */; };
 		11DAA7D322E829AE00EE1238 /* UpdateSingleTopicResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DAA7D222E829AE00EE1238 /* UpdateSingleTopicResponse.swift */; };
 		11DAA7D522E82A3800EE1238 /* UpdateSingleTopicRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DAA7D422E82A3800EE1238 /* UpdateSingleTopicRequest.swift */; };
 		11E55FAA22E23163008FD871 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E55FA822E23163008FD871 /* CategoriesViewController.swift */; };
@@ -78,6 +79,7 @@
 		742A18DD22DE81ED004C544D /* SingleTopicRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742A18DC22DE81ED004C544D /* SingleTopicRequest.swift */; };
 		742A18DF22DE8526004C544D /* CreateTopicRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742A18DE22DE8526004C544D /* CreateTopicRequest.swift */; };
 		742A18E122DE858A004C544D /* AddNewTopicResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742A18E022DE858A004C544D /* AddNewTopicResponse.swift */; };
+		B6A2524DCD16A398002314FC /* Pods_Eh_Ho.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24F2F79E53B60DBDD866CC1A /* Pods_Eh_Ho.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -120,6 +122,8 @@
 		11D43F7122EC47B10053933A /* SendMessageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SendMessageViewController.xib; sourceTree = "<group>"; };
 		11D43F7422EC47C10053933A /* SendMessageRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageRouter.swift; sourceTree = "<group>"; };
 		11D43F7622EC47D60053933A /* SendMessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageViewModel.swift; sourceTree = "<group>"; };
+		11D4AE6E2330297700C21C2C /* Eh-HoDatabase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Eh-HoDatabase.xcdatamodel"; sourceTree = "<group>"; };
+		11D4AE6F2330297700C21C2C /* ListCategories.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ListCategories.xcdatamodel; sourceTree = "<group>"; };
 		11DAA7D222E829AE00EE1238 /* UpdateSingleTopicResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSingleTopicResponse.swift; sourceTree = "<group>"; };
 		11DAA7D422E82A3800EE1238 /* UpdateSingleTopicRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSingleTopicRequest.swift; sourceTree = "<group>"; };
 		11E55FA822E23163008FD871 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
@@ -131,6 +135,7 @@
 		11E55FB422E2606E008FD871 /* ListCategoriesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCategoriesResponse.swift; sourceTree = "<group>"; };
 		11F5243022E4BBF300F9653E /* AddNewPostResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewPostResponse.swift; sourceTree = "<group>"; };
 		11F5243222E4BC6100F9653E /* CreatePostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostRequest.swift; sourceTree = "<group>"; };
+		24F2F79E53B60DBDD866CC1A /* Pods_Eh_Ho.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eh_Ho.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		742A189622DE5309004C544D /* Eh-Ho.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Eh-Ho.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		742A189922DE5309004C544D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		742A18A022DE530B004C544D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -154,6 +159,8 @@
 		742A18DC22DE81ED004C544D /* SingleTopicRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTopicRequest.swift; sourceTree = "<group>"; };
 		742A18DE22DE8526004C544D /* CreateTopicRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTopicRequest.swift; sourceTree = "<group>"; };
 		742A18E022DE858A004C544D /* AddNewTopicResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewTopicResponse.swift; sourceTree = "<group>"; };
+		844CE6BFA5DE018272800689 /* Pods-Eh-Ho.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eh-Ho.debug.xcconfig"; path = "Target Support Files/Pods-Eh-Ho/Pods-Eh-Ho.debug.xcconfig"; sourceTree = "<group>"; };
+		93E1A9B04FD36BDC6C189EED /* Pods-Eh-Ho.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eh-Ho.release.xcconfig"; path = "Target Support Files/Pods-Eh-Ho/Pods-Eh-Ho.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +168,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6A2524DCD16A398002314FC /* Pods_Eh_Ho.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,6 +249,22 @@
 			path = SendMessages;
 			sourceTree = "<group>";
 		};
+		11D4AE6823300EB400C21C2C /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				11D4AE69233014E900C21C2C /* Models */,
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
+		11D4AE69233014E900C21C2C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				11D4AE6D2330297700C21C2C /* Eh-HoDatabase.xcdatamodeld */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		11E55FA722E230B6008FD871 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -252,11 +276,22 @@
 			path = Categories;
 			sourceTree = "<group>";
 		};
+		3B29BD9374FD152AAFA431B6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				844CE6BFA5DE018272800689 /* Pods-Eh-Ho.debug.xcconfig */,
+				93E1A9B04FD36BDC6C189EED /* Pods-Eh-Ho.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		742A188D22DE5309004C544D = {
 			isa = PBXGroup;
 			children = (
 				742A189822DE5309004C544D /* Eh-Ho */,
 				742A189722DE5309004C544D /* Products */,
+				3B29BD9374FD152AAFA431B6 /* Pods */,
+				9E525F8E4FEF2C9B9F60C0B1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -380,6 +415,7 @@
 		742A18BF22DE6483004C544D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				11D4AE6823300EB400C21C2C /* Local */,
 				742A18CB22DE74A5004C544D /* Responses */,
 				742A18DC22DE81ED004C544D /* SingleTopicRequest.swift */,
 				742A18DE22DE8526004C544D /* CreateTopicRequest.swift */,
@@ -446,6 +482,14 @@
 			path = DetailTopic;
 			sourceTree = "<group>";
 		};
+		9E525F8E4FEF2C9B9F60C0B1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				24F2F79E53B60DBDD866CC1A /* Pods_Eh_Ho.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -453,9 +497,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 742A18A822DE530B004C544D /* Build configuration list for PBXNativeTarget "Eh-Ho" */;
 			buildPhases = (
+				F81AE1650E370D9577C176A9 /* [CP] Check Pods Manifest.lock */,
 				742A189222DE5309004C544D /* Sources */,
 				742A189322DE5309004C544D /* Frameworks */,
 				742A189422DE5309004C544D /* Resources */,
+				D7EEFE7053E870DBB66D8DAF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -521,6 +567,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		D7EEFE7053E870DBB66D8DAF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Eh-Ho/Pods-Eh-Ho-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Eh-Ho/Pods-Eh-Ho-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Eh-Ho/Pods-Eh-Ho-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F81AE1650E370D9577C176A9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Eh-Ho-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		742A189222DE5309004C544D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -574,6 +662,7 @@
 				11BAFEBF22EB3DEF004C026E /* ListUsersResponse.swift in Sources */,
 				742A18E122DE858A004C544D /* AddNewTopicResponse.swift in Sources */,
 				11B3D2A822E580D400F81497 /* PostCreateViewController.swift in Sources */,
+				11D4AE702330297700C21C2C /* Eh-HoDatabase.xcdatamodeld in Sources */,
 				742A18BE22DE620C004C544D /* APIClient.swift in Sources */,
 				11BAFEBC22EB367A004C026E /* UsersTableViewCell.swift in Sources */,
 				11F5243122E4BBF300F9653E /* AddNewPostResponse.swift in Sources */,
@@ -720,6 +809,7 @@
 		};
 		742A18A922DE530B004C544D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 844CE6BFA5DE018272800689 /* Pods-Eh-Ho.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -737,6 +827,7 @@
 		};
 		742A18AA22DE530B004C544D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93E1A9B04FD36BDC6C189EED /* Pods-Eh-Ho.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -774,6 +865,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		11D4AE6D2330297700C21C2C /* Eh-HoDatabase.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				11D4AE6E2330297700C21C2C /* Eh-HoDatabase.xcdatamodel */,
+				11D4AE6F2330297700C21C2C /* ListCategories.xcdatamodel */,
+			);
+			currentVersion = 11D4AE6E2330297700C21C2C /* Eh-HoDatabase.xcdatamodel */;
+			path = "Eh-HoDatabase.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 742A188E22DE5309004C544D /* Project object */;
 }
