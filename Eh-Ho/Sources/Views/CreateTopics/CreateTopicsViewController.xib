@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateTopicsViewController" customModule="Eh_Ho" customModuleProvider="target">
+            <connections>
+                <outlet property="textfieldDescripcion" destination="cdQ-ea-g0M" id="uUq-FW-WXJ"/>
+                <outlet property="textfieldTitulo" destination="Jfw-0C-G4C" id="ZZr-gv-VIE"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" distribution="fillProportionally" spacing="80" translatesAutoresizingMaskIntoConstraints="NO" id="qI3-iG-HCa">
+                    <rect key="frame" x="10" y="150" width="394" height="346"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jfw-0C-G4C">
+                            <rect key="frame" x="0.0" y="0.0" width="394" height="41.5"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cdQ-ea-g0M" userLabel="Textfield Descripcion">
+                            <rect key="frame" x="0.0" y="121.5" width="394" height="100"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="100" id="yik-pH-9ai"/>
+                            </constraints>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HCa-Dq-2GF">
+                            <rect key="frame" x="0.0" y="301.5" width="394" height="44.5"/>
+                            <color key="backgroundColor" red="0.77355510000000005" green="0.87039762740000004" blue="0.90409582850000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <state key="normal" title="Crear"/>
+                            <connections>
+                                <action selector="buttonCrearTopic:" destination="-1" eventType="touchUpInside" id="SAO-ae-kZe"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="qI3-iG-HCa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="150" id="NV9-yZ-JaR"/>
+                <constraint firstAttribute="bottom" secondItem="qI3-iG-HCa" secondAttribute="bottom" constant="400" id="PfC-bF-oL7"/>
+                <constraint firstAttribute="trailing" secondItem="qI3-iG-HCa" secondAttribute="trailing" constant="10" id="fd9-pT-Z8h"/>
+                <constraint firstItem="qI3-iG-HCa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="k6w-rq-rZU"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+        </view>
+    </objects>
+</document>
