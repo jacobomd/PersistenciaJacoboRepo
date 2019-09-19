@@ -7,11 +7,21 @@
 //
 
 import UIKit
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    private let databaseCoreDataName = "Eh-HoDatabase"
+    lazy var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: databaseCoreDataName)
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+        })
+        
+        return container
+    }()
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -21,6 +31,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let tabBar = TabBarController(categoriesController: CategoriesRouter.configureModule(), addController: CreateTopicsRouter.configureModule(), users: UsersRouter.configureModule())
         window?.rootViewController = tabBar
+        
+        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        print(urls[urls.count-1] as URL)
         
         return true
     }
