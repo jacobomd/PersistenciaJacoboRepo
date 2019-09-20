@@ -12,7 +12,7 @@ class CategoriesViewModel {
     
     weak var view: CategoriesViewControllerProtocol?
     
-    private let mDataManagerCategories = DataManagerCategories()
+    private let mDataManagerCategories = DataManager()
     
     let router: CategoriesRouter
     let categoriesRepository: CategoriesRepository
@@ -37,7 +37,7 @@ class CategoriesViewModel {
 
                 //print(self?.mDataManagerCategories.loadTasks().first?.categoryId)
                 self?.view?.showListCategories(categories: value.categoryList.categories)
-                self?.mDataManagerCategories.save(category: value.categoryList.categories)
+                self?.mDataManagerCategories.saveCategories(category: value.categoryList.categories)
             case .failure:
                 self?.view?.showError(with: "Error")
             }

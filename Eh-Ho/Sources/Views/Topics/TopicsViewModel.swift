@@ -11,6 +11,9 @@ import Foundation
 class TopicsViewModel {
     
     weak var view: TopicsViewControllerProtocol?
+    
+    private let mDataManagerTopic = DataManager()
+    
     let router: TopicsRouter
     let id: Int
     let topicsRepository: TopicsRepository
@@ -34,6 +37,7 @@ class TopicsViewModel {
            switch result {
            case .success(let value):
               self?.view?.showListTopicsByCategory(topics: value.topicList.topics)
+              self?.mDataManagerTopic.saveTopics(topic: value.topicList.topics)
             print("llega el valor")
           case .failure:
                 self?.view?.showError(with: "Error")

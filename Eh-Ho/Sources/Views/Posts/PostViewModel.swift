@@ -11,6 +11,10 @@ import Foundation
 class PostViewModel {
     
     weak var  view: PostsViewControllerProtocol?
+    
+    private let mDataManagerPost = DataManager()
+
+    
     let router: PostRouter
     let id: Int
     let postsRepository: PostsRepository
@@ -42,6 +46,7 @@ class PostViewModel {
             switch result {
             case .success(let value):
                 self?.view?.showListPostssByTopic(posts: value.postStream.posts)
+                self?.mDataManagerPost.savePosts(post: value.postStream.posts)
                 print("llega el valor")
             case .failure:
                 self?.view?.showError(with: "Error")
