@@ -20,6 +20,25 @@ class DatabaseCoreData {
         return appDelegate.persistentContainer.viewContext
     }
     
+    
+
+    
+    private func someEntityExists2(id: Int) -> Bool {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SomeEntity")
+        fetchRequest.includesSubentities = false
+        
+        var entitiesCount = 0
+        
+        do {
+            entitiesCount = try managedObjectContext()!.count(for: fetchRequest)
+        }
+        catch {
+            print("error executing fetch request: \(error)")
+        }
+        
+        return entitiesCount > 0
+    }
+    
 //    private func autoincrementID(context: NSManagedObjectContext) -> Int {
 //        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity_name)
 //        fetchRequest.sortDescriptors = [NSSortDescriptor(key: entity_key_idCategory, ascending: false)]
@@ -119,11 +138,32 @@ extension DatabaseCoreData: DatabaseCategoriesDelegate {
         _ = delete(data: data,
                    context: context)
     }
+    
+    
+    
+    
+    private func someEntityExists(id: Int, entityName: String) -> Bool {
+        var fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
+        fetchRequest.predicate = NSPredicate(format: "someField = %d", id)
+        
+        var results: [NSManagedObject] = []
+        
+        do {
+            results = try (managedObjectContext()?.fetch(fetchRequest))!
+        }
+        catch {
+            print("error executing fetch request: \(error)")
+        }
+        
+        return results.count > 0
+    }
+    
+    
 
     
     func saveCategories(category: [Category])  {
         
-        deleteAllDataCategories()
+       // deleteAllDataCategories()
         
         guard let context = managedObjectContext(),
             let entity = NSEntityDescription.entity(forEntityName: entity_nameCategory,
@@ -392,6 +432,106 @@ extension DatabaseCoreData: DatabasePostsDelegate {
                 
             } catch {
                 print("Error al guardar el topic \(dataPost.cooked)")
+                
+            }
+        }
+    }
+    
+}
+
+
+// MARK: - Database Users delegate extension
+
+// MARK: Private properties Posts
+private let entity_nameUser = "Users"
+private let entity_key_nameUser = "name"
+private let entity_key_userNameUser = "userName"
+
+
+extension DatabaseCoreData: DatabaseUsersDelegate {
+    
+    func initDefaultDataUsers() {
+        deleteAllDataUsers()
+    }
+    
+    func deleteAllDataUsers() {
+        guard let context = managedObjectContext() ,
+            let data = fetchDataRequest(context: context,
+                                        entity: entity_nameUser) else {
+                                            return
+        }
+        
+        _ = delete(data: data,
+                   context: context)
+    }
+    
+    
+    func saveUsers(user: [User4])  {
+        
+        deleteAllDataUsers()
+        
+        guard let context = managedObjectContext(),
+            let entity = NSEntityDescription.entity(forEntityName: entity_nameUser,
+                                                    in: context) else {
+                                                        return
+                                                        
+        }
+        
+        for dataUser in user {
+            
+            let userObject = NSManagedObject(entity: entity,
+                                             insertInto: context)
+            
+            //            save(object: taskObject,
+            //                 into: context,
+            //                 id: dataTopic.id,
+            //                 name: dataTopic.title)
+            
+            do {
+                
+                userObject.setValue(dataUser.name, forKey: entity_key_nameUser)
+                userObject.setValue(dataUser.username, forKey: entity_key_userNameUser)
+
+                
+                try context.save()
+                
+            } catch {
+                print("Error al guardar el post \(dataUser.name)")
+                
+            }
+            
+        }
+        
+    }
+    
+    func updateUsers(user: [User4])  {
+        
+        
+        for dataUser in user {
+            
+            guard let context = managedObjectContext(),
+                let data = fetchDataRequest(context: context,
+                                            entity: entity_nameUser,
+                                            predicate: "\(entity_key_idPost) = \(dataUser.name)"),
+                let dataToUpdate = data.first else {
+                    return
+            }
+            
+            //            save(object: dataToUpdate,
+            //                 into: context,
+            //                 id: dataTopic.id,
+            //                 name: dataTopic.title)
+            
+            do {
+                
+                dataToUpdate.setValue(dataUser.name, forKey: entity_key_nameUser)
+                dataToUpdate.setValue(dataUser.username, forKey: entity_key_userNameUser)
+
+                
+                try context.save()
+                
+            } catch {
+                print("Error al guardar el topic \(dataUser.name)")
                 
             }
         }

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1121CC252335592C00411A17 /* UserDefaultPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1121CC242335592C00411A17 /* UserDefaultPreferences.swift */; };
+		1121CC2723357EF300411A17 /* MinimTimeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1121CC2623357EF300411A17 /* MinimTimeData.swift */; };
+		1121CC2B23360C4F00411A17 /* Eh-HoDatabase.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 1121CC2A23360C4F00411A17 /* Eh-HoDatabase.xcdatamodel */; };
 		113BFD4A22E26650003D3CA8 /* ListCategoriesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113BFD4922E26650003D3CA8 /* ListCategoriesRequest.swift */; };
 		118EF0E222E311AF00F57FA2 /* ListTopicsByCategoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118EF0E122E311AF00F57FA2 /* ListTopicsByCategoryResponse.swift */; };
 		118EF0E422E312F300F57FA2 /* ListTopicsByCategoryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118EF0E322E312F300F57FA2 /* ListTopicsByCategoryRequest.swift */; };
@@ -28,12 +31,7 @@
 		11B3D2AB22E5810100F81497 /* PostCreateRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B3D2AA22E5810100F81497 /* PostCreateRouter.swift */; };
 		11B3D2AD22E5811F00F81497 /* PostCreateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B3D2AC22E5811F00F81497 /* PostCreateViewModel.swift */; };
 		11BA5183233137CE007A137B /* DatabaseCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BA5182233137CE007A137B /* DatabaseCoreData.swift */; };
-		11BA51852331382F007A137B /* CategoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BA51842331382F007A137B /* CategoryData.swift */; };
 		11BA518723313898007A137B /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BA518623313898007A137B /* DataManager.swift */; };
-		11BA518923313911007A137B /* TopicData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BA518823313911007A137B /* TopicData.swift */; };
-		11BA518C23313950007A137B /* PostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BA518B23313950007A137B /* PostData.swift */; };
-		11BA518E23313963007A137B /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BA518D23313963007A137B /* UserData.swift */; };
-		11BA519023313999007A137B /* MessageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BA518F23313999007A137B /* MessageData.swift */; };
 		11BAFEB322EB35E8004C026E /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BAFEB122EB35E8004C026E /* UsersViewController.swift */; };
 		11BAFEB422EB35E8004C026E /* UsersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11BAFEB222EB35E8004C026E /* UsersViewController.xib */; };
 		11BAFEB622EB35F7004C026E /* UsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BAFEB522EB35F7004C026E /* UsersViewModel.swift */; };
@@ -53,7 +51,6 @@
 		11D43F7322EC47B10053933A /* SendMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11D43F7122EC47B10053933A /* SendMessageViewController.xib */; };
 		11D43F7522EC47C10053933A /* SendMessageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D43F7422EC47C10053933A /* SendMessageRouter.swift */; };
 		11D43F7722EC47D60053933A /* SendMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D43F7622EC47D60053933A /* SendMessageViewModel.swift */; };
-		11D4AE702330297700C21C2C /* Eh-HoDatabase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 11D4AE6D2330297700C21C2C /* Eh-HoDatabase.xcdatamodeld */; };
 		11DAA7D322E829AE00EE1238 /* UpdateSingleTopicResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DAA7D222E829AE00EE1238 /* UpdateSingleTopicResponse.swift */; };
 		11DAA7D522E82A3800EE1238 /* UpdateSingleTopicRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DAA7D422E82A3800EE1238 /* UpdateSingleTopicRequest.swift */; };
 		11E55FAA22E23163008FD871 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E55FA822E23163008FD871 /* CategoriesViewController.swift */; };
@@ -90,6 +87,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1121CC242335592C00411A17 /* UserDefaultPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultPreferences.swift; sourceTree = "<group>"; };
+		1121CC2623357EF300411A17 /* MinimTimeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimTimeData.swift; sourceTree = "<group>"; };
+		1121CC2A23360C4F00411A17 /* Eh-HoDatabase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Eh-HoDatabase.xcdatamodel"; sourceTree = "<group>"; };
 		113BFD4922E26650003D3CA8 /* ListCategoriesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCategoriesRequest.swift; sourceTree = "<group>"; };
 		118EF0E122E311AF00F57FA2 /* ListTopicsByCategoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTopicsByCategoryResponse.swift; sourceTree = "<group>"; };
 		118EF0E322E312F300F57FA2 /* ListTopicsByCategoryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTopicsByCategoryRequest.swift; sourceTree = "<group>"; };
@@ -111,12 +111,7 @@
 		11B3D2AA22E5810100F81497 /* PostCreateRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCreateRouter.swift; sourceTree = "<group>"; };
 		11B3D2AC22E5811F00F81497 /* PostCreateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCreateViewModel.swift; sourceTree = "<group>"; };
 		11BA5182233137CE007A137B /* DatabaseCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseCoreData.swift; sourceTree = "<group>"; };
-		11BA51842331382F007A137B /* CategoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryData.swift; sourceTree = "<group>"; };
 		11BA518623313898007A137B /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		11BA518823313911007A137B /* TopicData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicData.swift; sourceTree = "<group>"; };
-		11BA518B23313950007A137B /* PostData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostData.swift; sourceTree = "<group>"; };
-		11BA518D23313963007A137B /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
-		11BA518F23313999007A137B /* MessageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageData.swift; sourceTree = "<group>"; };
 		11BAFEB122EB35E8004C026E /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
 		11BAFEB222EB35E8004C026E /* UsersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UsersViewController.xib; sourceTree = "<group>"; };
 		11BAFEB522EB35F7004C026E /* UsersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewModel.swift; sourceTree = "<group>"; };
@@ -136,8 +131,6 @@
 		11D43F7122EC47B10053933A /* SendMessageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SendMessageViewController.xib; sourceTree = "<group>"; };
 		11D43F7422EC47C10053933A /* SendMessageRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageRouter.swift; sourceTree = "<group>"; };
 		11D43F7622EC47D60053933A /* SendMessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageViewModel.swift; sourceTree = "<group>"; };
-		11D4AE6E2330297700C21C2C /* Eh-HoDatabase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Eh-HoDatabase.xcdatamodel"; sourceTree = "<group>"; };
-		11D4AE6F2330297700C21C2C /* ListCategories.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ListCategories.xcdatamodel; sourceTree = "<group>"; };
 		11DAA7D222E829AE00EE1238 /* UpdateSingleTopicResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSingleTopicResponse.swift; sourceTree = "<group>"; };
 		11DAA7D422E82A3800EE1238 /* UpdateSingleTopicRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSingleTopicRequest.swift; sourceTree = "<group>"; };
 		11E55FA822E23163008FD871 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
@@ -234,11 +227,7 @@
 		11BA518A23313923007A137B /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				11BA51842331382F007A137B /* CategoryData.swift */,
-				11BA518823313911007A137B /* TopicData.swift */,
-				11BA518B23313950007A137B /* PostData.swift */,
-				11BA518D23313963007A137B /* UserData.swift */,
-				11BA518F23313999007A137B /* MessageData.swift */,
+				1121CC2A23360C4F00411A17 /* Eh-HoDatabase.xcdatamodel */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -294,6 +283,7 @@
 		11D4AE6823300EB400C21C2C /* Local */ = {
 			isa = PBXGroup;
 			children = (
+				1121CC242335592C00411A17 /* UserDefaultPreferences.swift */,
 				11BA519123314BA5007A137B /* DataManager */,
 				11BA519223314BB8007A137B /* DatabaseCoreData */,
 				11D4AE69233014E900C21C2C /* Models */,
@@ -305,7 +295,6 @@
 			isa = PBXGroup;
 			children = (
 				11BA518A23313923007A137B /* Data */,
-				11D4AE6D2330297700C21C2C /* Eh-HoDatabase.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -512,6 +501,7 @@
 			isa = PBXGroup;
 			children = (
 				742A18CF22DE789D004C544D /* UITableViewCellExten.swift */,
+				1121CC2623357EF300411A17 /* MinimTimeData.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -689,13 +679,12 @@
 				742A18C622DE6999004C544D /* TopicsRepositoryImpl.swift in Sources */,
 				742A18D722DE7C65004C544D /* DetailTopicViewModel.swift in Sources */,
 				11DAA7D522E82A3800EE1238 /* UpdateSingleTopicRequest.swift in Sources */,
-				11BA518C23313950007A137B /* PostData.swift in Sources */,
 				118EF0EF22E36BD300F57FA2 /* PostsRepository.swift in Sources */,
 				11A4529422E9830D00439C70 /* CreateTopisViewModel.swift in Sources */,
 				11E55FAD22E23187008FD871 /* CategoriesViewModel.swift in Sources */,
+				1121CC2723357EF300411A17 /* MinimTimeData.swift in Sources */,
 				742A18CA22DE6F37004C544D /* TopicsViewModel.swift in Sources */,
 				11D43F7722EC47D60053933A /* SendMessageViewModel.swift in Sources */,
-				11BA518923313911007A137B /* TopicData.swift in Sources */,
 				11E55FAA22E23163008FD871 /* CategoriesViewController.swift in Sources */,
 				11E55FB322E23DA7008FD871 /* CategoriesRepositoryImpl.swift in Sources */,
 				11D43F6822EC42980053933A /* SendNewMessagePrivateResponse.swift in Sources */,
@@ -710,17 +699,15 @@
 				11BAFEBF22EB3DEF004C026E /* ListUsersResponse.swift in Sources */,
 				742A18E122DE858A004C544D /* AddNewTopicResponse.swift in Sources */,
 				11B3D2A822E580D400F81497 /* PostCreateViewController.swift in Sources */,
-				11D4AE702330297700C21C2C /* Eh-HoDatabase.xcdatamodeld in Sources */,
-				11BA519023313999007A137B /* MessageData.swift in Sources */,
 				742A18BE22DE620C004C544D /* APIClient.swift in Sources */,
+				1121CC2B23360C4F00411A17 /* Eh-HoDatabase.xcdatamodel in Sources */,
 				11BAFEBC22EB367A004C026E /* UsersTableViewCell.swift in Sources */,
 				11BA518723313898007A137B /* DataManager.swift in Sources */,
 				11F5243122E4BBF300F9653E /* AddNewPostResponse.swift in Sources */,
+				1121CC252335592C00411A17 /* UserDefaultPreferences.swift in Sources */,
 				113BFD4A22E26650003D3CA8 /* ListCategoriesRequest.swift in Sources */,
 				11E55FAF22E231A3008FD871 /* CategoriesRouter.swift in Sources */,
-				11BA51852331382F007A137B /* CategoryData.swift in Sources */,
 				11B3D2AD22E5811F00F81497 /* PostCreateViewModel.swift in Sources */,
-				11BA518E23313963007A137B /* UserData.swift in Sources */,
 				118EF0E822E34D7100F57FA2 /* TopicCell.swift in Sources */,
 				11DAA7D322E829AE00EE1238 /* UpdateSingleTopicResponse.swift in Sources */,
 				11D43F6A22EC432C0053933A /* SendNewMessagePrivateRequest.swift in Sources */,
@@ -917,20 +904,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		11D4AE6D2330297700C21C2C /* Eh-HoDatabase.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				11D4AE6E2330297700C21C2C /* Eh-HoDatabase.xcdatamodel */,
-				11D4AE6F2330297700C21C2C /* ListCategories.xcdatamodel */,
-			);
-			currentVersion = 11D4AE6E2330297700C21C2C /* Eh-HoDatabase.xcdatamodel */;
-			path = "Eh-HoDatabase.xcdatamodeld";
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 742A188E22DE5309004C544D /* Project object */;
 }

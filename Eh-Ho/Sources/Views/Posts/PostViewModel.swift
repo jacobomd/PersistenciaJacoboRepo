@@ -47,6 +47,7 @@ class PostViewModel {
             case .success(let value):
                 self?.view?.showListPostssByTopic(posts: value.postStream.posts)
                 self?.mDataManagerPost.savePosts(post: value.postStream.posts)
+                self?.mDataManagerPost.saveLastDownload()
                 print("llega el valor")
             case .failure:
                 self?.view?.showError(with: "Error")

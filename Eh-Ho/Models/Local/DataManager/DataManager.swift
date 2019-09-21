@@ -41,45 +41,62 @@ protocol DatabasePostsDelegate {
     //func findTasksBy(state: TaskState) -> Array<TaskData>
 }
 
+protocol DatabaseUsersDelegate {
+    func initDefaultDataUsers()
+    func deleteAllDataUsers()
+    //func deleteTaskBy(id: Int) -> Bool
+    func saveUsers(user: [User4])
+    func updateUsers(user: [User4])
+    //func dataTPosts() -> Array<Topic>
+    //func findTaskBy(id: Int) -> CategoryData?
+    //func findTasksBy(state: TaskState) -> Array<TaskData>
+}
+
 class DataManager {
     private var mDatabaseProviderCategories: DatabaseCategoriesDelegate?
     private var mDatabaseProviderTopics: DatabaseTopicsDelegate?
     private var mDatabaseProviderPosts: DatabasePostsDelegate?
+    private var mDatabaseProviderUsers: DatabaseUsersDelegate?
 
-    //private var mUserPreferences: UserDefaultsPreferences?
+
+    private var mUserPreferences: UserDefaultsPreferences?
     
     init() {
         mDatabaseProviderCategories = DatabaseCoreData()
         mDatabaseProviderTopics = DatabaseCoreData()
         mDatabaseProviderPosts = DatabaseCoreData()
+        mDatabaseProviderUsers = DatabaseCoreData()
 
 
-        //mUserPreferences = UserDefaultsPreferences()
+
+        mUserPreferences = UserDefaultsPreferences()
     }
     
     deinit {
         mDatabaseProviderCategories = nil
         mDatabaseProviderTopics = nil
         mDatabaseProviderPosts = nil
+        mDatabaseProviderUsers = nil
 
-        //mUserPreferences = nil
+        mUserPreferences = nil
     }
 }
 
 
-// User preferences methods
-//extension DataManager {
-//    func saveTask(stateSelected: TaskState) {
-//        mUserPreferences?.saveTask(state: stateSelected.value)
-//    }
-//
-//    func taskStateSelected() -> TaskState? {
-//        guard let taskState = mUserPreferences?.taskState() else {
-//            return nil
-//        }
-//
-//        return TaskState(rawValue: taskState)
-//    }
+ //User preferences methods
+extension DataManager {
+    func saveLastDownload() {
+        mUserPreferences?.saveLastDownload()
+    }
+
+    func loadLastDownload() -> Date? {
+        guard let dateLastDownload = mUserPreferences?.loadLastDownload() else {
+            return nil
+        }
+
+        return dateLastDownload
+    }
+}
 //
 //    func deleteTaskStateSelected() {
 //        mUserPreferences?.deleteTaskStateSelected()
@@ -164,5 +181,31 @@ extension DataManager {
     
     func deleteAllPosts() {
         mDatabaseProviderPosts?.deleteAllDataPosts()
+    }
+}
+
+extension DataManager {
+    func saveUsers(user: [User4]) {
+        mDatabaseProviderUsers?.saveUsers(user: user)
+    }
+    
+    func updateUsers(user: [User4])   {
+        mDatabaseProviderUsers?.updateUsers(user: user)
+    }
+    
+    //    func loadTasks() -> Array<Topic> {
+    //        return mDatabaseProviderTopics?.dataTopics() ?? Array()
+    //    }
+    //
+    //    func loadTasks(by state: TaskState) -> Array<TaskData> {
+    //        return mDatabaseProvider?.findTasksBy(state: state) ?? Array()
+    //    }
+    
+    //    func delete(task: CategoryData) -> Bool {
+    //        return mDatabaseProvider?.deleteTaskBy(id: task.id) ?? false
+    //    }
+    
+    func deleteAllUsers() {
+        mDatabaseProviderUsers?.deleteAllDataUsers()
     }
 }

@@ -11,6 +11,8 @@ import Foundation
 class UsersViewModel {
     
     weak var view: UsersViewControllerProtocol?
+    
+    private let mDataManagerUsers = DataManager()
 
     let router: UsersRouter
     let usersRepository: UsersRepository
@@ -35,6 +37,8 @@ class UsersViewModel {
             switch result {
             case .success(let value):
                 self?.view?.showListUsers(users: value.users)
+                self?.mDataManagerUsers.saveUsers(user: value.users)
+                self?.mDataManagerUsers.saveLastDownload()
             case .failure:
                 self?.view?.showError(with: "Error")
             }

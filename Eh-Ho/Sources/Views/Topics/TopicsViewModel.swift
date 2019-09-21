@@ -38,6 +38,7 @@ class TopicsViewModel {
            case .success(let value):
               self?.view?.showListTopicsByCategory(topics: value.topicList.topics)
               self?.mDataManagerTopic.saveTopics(topic: value.topicList.topics)
+              self?.mDataManagerTopic.saveLastDownload()
             print("llega el valor")
           case .failure:
                 self?.view?.showError(with: "Error")
