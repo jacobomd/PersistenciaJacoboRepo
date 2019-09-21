@@ -35,12 +35,12 @@ class CategoriesViewModel {
             switch result {
             case .success(let value):
 
-                //print(self?.mDataManagerCategories.loadTasks().first?.categoryId)
                 self?.view?.showListCategories(categories: value.categoryList.categories)
                 self?.mDataManagerCategories.saveCategories(category: value.categoryList.categories)
                 self?.mDataManagerCategories.saveLastDownload()
             case .failure:
                 self?.view?.showError(with: "Error")
+                self?.view?.showListCategoriesCD(categories: self?.mDataManagerCategories.dataCategories() ?? Array())
             }
         }
     }

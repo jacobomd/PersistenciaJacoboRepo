@@ -35,6 +35,8 @@ class CategoriesViewController: UIViewController {
     
     let viewModel: CategoriesViewModel
     var categories : [Category] = []
+    var categoriesCD : [CategoryData] = []
+    var connection : Bool = true
     
     init(viewModel: CategoriesViewModel) {
         self.viewModel = viewModel
@@ -64,13 +66,22 @@ class CategoriesViewController: UIViewController {
 extension CategoriesViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories.count
+        if connection {
+            return categories.count
+        } else {
+            return categoriesCD.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = categoriesTable.dequeueReusableCell(withIdentifier: UITableViewCell.identifier, for: indexPath)
         
-        cell.textLabel?.text = categories[indexPath.row].name
+        if connection {
+            cell.textLabel?.text = categories[indexPath.row].name
+        } else {
+            cell.textLabel?.text = categoriesCD[indexPath.row].name
+            print("Carga de datos de las categorias desde core data")
+        }
         return cell
     }
     
@@ -89,9 +100,12 @@ protocol CategoriesViewControllerProtocol: class {
     
     func showListCategories(categories: [Category])
     func showError(with message: String)
+    func showListCategoriesCD(categories: [CategoryData]) 
 }
 
 extension CategoriesViewController:  CategoriesViewControllerProtocol {
+
+
     func showError(with message: String) {
         print("Error")
     }
@@ -100,7 +114,11 @@ extension CategoriesViewController:  CategoriesViewControllerProtocol {
         self.categories = categories
         self.categoriesTable.reloadData()
     }
-    
+
+    func showListCategoriesCD(categories: [CategoryData]) {
+        connection = false
+        categoriesCD = categories
+    }
     
     
 }

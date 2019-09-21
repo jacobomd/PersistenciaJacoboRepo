@@ -13,8 +13,8 @@ protocol DatabaseCategoriesDelegate {
     func deleteAllDataCategories()
     //func deleteTaskBy(id: Int) -> Bool
     func saveCategories(category: [Category])
-    func updateCategories(category: [Category])
-    //func dataCategories() -> Array<Category>
+    //func updateCategories(category: [Category])
+    func dataCategories() -> Array<CategoryData>
     //func findTaskBy(id: Int) -> CategoryData?
     //func findTasksBy(state: TaskState) -> Array<TaskData>
 }
@@ -110,13 +110,13 @@ extension DataManager {
          mDatabaseProviderCategories?.saveCategories(category: category)
     }
     
-    func updateCategories(category: [Category])   {
-         mDatabaseProviderCategories?.updateCategories(category: category)
-    }
-
-//    func loadTasksCategories() -> Array<CategoryData> {
-//        return mDatabaseProviderCategories?.dataCategories() ?? Array()
+//    func updateCategories(category: [Category])   {
+//         mDatabaseProviderCategories?.updateCategories(category: category)
 //    }
+
+    func dataCategories() -> Array<CategoryData> {
+        return mDatabaseProviderCategories?.dataCategories() ?? Array()
+    }
 //
 //    func loadTasks(by state: TaskState) -> Array<TaskData> {
 //        return mDatabaseProvider?.findTasksBy(state: state) ?? Array()

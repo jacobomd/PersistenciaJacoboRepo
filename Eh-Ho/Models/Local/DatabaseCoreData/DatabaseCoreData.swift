@@ -69,23 +69,24 @@ class DatabaseCoreData {
         }
     }
     
+    private func categoriesData(from categoryCD: [NSManagedObject]) -> Array<CategoryData> {
+        return categoryCD.compactMap { categoryCD in
+            guard let id = categoryCD.value(forKey: entity_key_idCategory) as? Int,
+                let name = categoryCD.value(forKey: entity_key_nameCategory) as? String else {
+                    return nil
+            }
+            
+            return CategoryData(categoryId: id,
+                                name: name)
+        }
+    }
+    
     
 }
     
 
-    
-    //    private func categoriesData(from categoryCD: [NSManagedObject]) -> Array<CategoryData> {
-    //        return categoryCD.compactMap { categoryCD in
-    //            guard let id = categoryCD.value(forKey: entity_key_id) as? Int,
-    //                let name = categoryCD.value(forKey: entity_key_name) as? String else {
-    //                    return nil
-    //            }
-    //
-    //            return CategoryData(categoryId: id,
-    //                                name: name)
-    //        }
-    //    }
-    
+
+
     
     
     //    private func findData(done: Bool) -> Array<CategoryData> {
@@ -111,6 +112,8 @@ private let entity_key_idCategory = "categoryId"
 private let entity_key_nameCategory = "name"
 
 extension DatabaseCoreData: DatabaseCategoriesDelegate {
+
+    
     func initDefaultDataCategories() {
         deleteAllDataCategories()
     }
@@ -169,36 +172,18 @@ extension DatabaseCoreData: DatabaseCategoriesDelegate {
         
     }
     
-    
-    func updateCategories(category: [Category])  {
-
-        
-        for dataCategory in category {
-            
-            guard let context = managedObjectContext(),
-                let data = fetchDataRequest(context: context,
-                                            entity: entity_nameCategory,
-                                            predicate: "\(entity_key_idCategory) = \(dataCategory.id)"),
-                let dataToUpdate = data.first else {
-                    return
-            }
-
-            do {
-                
-                dataToUpdate.setValue(dataCategory.id, forKey: entity_key_idCategory)
-                
-                dataToUpdate.setValue(dataCategory.name, forKey: entity_key_nameCategory)
-                
-                try context.save()
-                
-            } catch {
-                print("Error al guardar la categoria: \(dataCategory.name)")
-                
-            }
+    func dataCategories() -> Array<CategoryData> {
+        guard let context = managedObjectContext(),
+            let data = fetchDataRequest(context: context,
+                                        entity: entity_nameCategory) else {
+                                            return Array()
         }
+        
+        return categoriesData(from: data)
     }
-
 }
+    
+
 
 // MARK: - Database Topics delegate extension
 
