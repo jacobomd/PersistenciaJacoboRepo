@@ -17,6 +17,7 @@
         <attribute name="views" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="Users" representedClassName="Users" syncable="YES" codeGenerationType="class">
+        <attribute name="idUser" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
@@ -24,6 +25,6 @@
         <element name="Categories" positionX="673.2265625" positionY="-22.76953125" width="128" height="73"/>
         <element name="Posts" positionX="215.71484375" positionY="-29.28125" width="128" height="103"/>
         <element name="Topics" positionX="437.49609375" positionY="-41.84765625" width="128" height="103"/>
-        <element name="Users" positionX="227.12890625" positionY="192.1484375" width="128" height="73"/>
+        <element name="Users" positionX="227.12890625" positionY="192.1484375" width="128" height="88"/>
     </elements>
 </model>

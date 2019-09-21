@@ -20,52 +20,24 @@ class DatabaseCoreData {
         return appDelegate.persistentContainer.viewContext
     }
     
-    
 
-    
-    private func someEntityExists2(id: Int) -> Bool {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SomeEntity")
-        fetchRequest.includesSubentities = false
+    private func someEntityExists(id: Int, idAtribute: String, entityName: String) -> Bool {
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
+        fetchRequest.predicate = NSPredicate(format: "\(idAtribute) = \(id)")
         
-        var entitiesCount = 0
+        var results: [NSManagedObject] = []
         
         do {
-            entitiesCount = try managedObjectContext()!.count(for: fetchRequest)
+            results = try (managedObjectContext()?.fetch(fetchRequest))!
         }
         catch {
             print("error executing fetch request: \(error)")
         }
         
-        return entitiesCount > 0
+        return results.count > 0
     }
     
-//    private func autoincrementID(context: NSManagedObjectContext) -> Int {
-//        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity_name)
-//        fetchRequest.sortDescriptors = [NSSortDescriptor(key: entity_key_idCategory, ascending: false)]
-//
-//        do {
-//            guard let data = try context.fetch(fetchRequest) as? [NSManagedObject],
-//                let maxId = data.first?.value(forKey: entity_key_idCategory) as? Int else {
-//                    return 0
-//            }
-//
-//            return maxId + 1
-//        } catch {
-//            print("Error al generar autoincrement id")
-//            return 0
-//        }
-//    }
-    
-//    private func findData(done: Bool) -> Array<CategoryData> {
-//        guard let context = managedObjectContext(),
-//            let data = fetchDataRequest(context: context,
-//                                        entity: entity_name,
-//                                        predicate: "\(entity_key_isDone) = \(done)") else {
-//                                            return Array()
-//        }
-//        
-//        return categoriesData(from: data)
-//    }
+
     
     private func fetchDataRequest(context: NSManagedObjectContext, entity: String, predicate: String? = nil) -> [NSManagedObject]?  {
         // Create fetch request
@@ -97,6 +69,9 @@ class DatabaseCoreData {
         }
     }
     
+    
+}
+    
 
     
     //    private func categoriesData(from categoryCD: [NSManagedObject]) -> Array<CategoryData> {
@@ -110,10 +85,22 @@ class DatabaseCoreData {
     //                                name: name)
     //        }
     //    }
-}
     
+    
+    
+    //    private func findData(done: Bool) -> Array<CategoryData> {
+    //        guard let context = managedObjectContext(),
+    //            let data = fetchDataRequest(context: context,
+    //                                        entity: entity_name,
+    //                                        predicate: "\(entity_key_isDone) = \(done)") else {
+    //                                            return Array()
+    //        }
+    //
+    //        return categoriesData(from: data)
+    //    }
     
 
+    
 
 
 // MARK: - Database Categories delegate extension
@@ -134,70 +121,54 @@ extension DatabaseCoreData: DatabaseCategoriesDelegate {
                                         entity: entity_nameCategory) else {
                                             return
         }
-
+        
         _ = delete(data: data,
                    context: context)
     }
     
     
-    
-    
-    private func someEntityExists(id: Int, entityName: String) -> Bool {
-        var fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
-        fetchRequest.predicate = NSPredicate(format: "someField = %d", id)
-        
-        var results: [NSManagedObject] = []
-        
-        do {
-            results = try (managedObjectContext()?.fetch(fetchRequest))!
-        }
-        catch {
-            print("error executing fetch request: \(error)")
-        }
-        
-        return results.count > 0
-    }
-    
-    
-
-    
     func saveCategories(category: [Category])  {
         
-       // deleteAllDataCategories()
         
         guard let context = managedObjectContext(),
             let entity = NSEntityDescription.entity(forEntityName: entity_nameCategory,
                                                     in: context) else {
-        return
-
+                                                        return
+                                                        
         }
-
+        
         for dataCategory in category {
             
-                    let taskObject = NSManagedObject(entity: entity,
-                                                     insertInto: context)
-        
-//           save(object: taskObject,
-//                into: context,
-//                id: dataCategory.id,
-//                name: dataCategory.name)
             
-            do {
+            if someEntityExists(id: dataCategory.id, idAtribute: entity_key_idCategory, entityName: entity_nameCategory) {
+                print("Data is already present")
+                return
+            }
+                //else create and save new user
+            else {
                 
-                taskObject.setValue(dataCategory.id, forKey: entity_key_idCategory)
+                let taskObject = NSManagedObject(entity: entity,
+                                                 insertInto: context)
                 
-                taskObject.setValue(dataCategory.name, forKey: entity_key_nameCategory)
+                do {
+                    
+                    taskObject.setValue(dataCategory.id, forKey: entity_key_idCategory)
+                    taskObject.setValue(dataCategory.name, forKey: entity_key_nameCategory)
+                    
+                    try context.save()
+                    print("Aqu esta el valor nulooooooooooooooooooooooo")
+                    
+                } catch {
+                    print("Error al guardar la task: \(dataCategory.name)")
+                    
+                }
                 
-                try context.save()
-                
-            } catch {
-                print("Error al guardar la categoria: \(dataCategory.name)")
-               
             }
             
         }
         
     }
+    
     
     func updateCategories(category: [Category])  {
 
@@ -211,12 +182,7 @@ extension DatabaseCoreData: DatabaseCategoriesDelegate {
                 let dataToUpdate = data.first else {
                     return
             }
-        
-//        save(object: dataToUpdate,
-//                    into: context,
-//                    id: dataCategory.id,
-//                    name: dataCategory.name)
-            
+
             do {
                 
                 dataToUpdate.setValue(dataCategory.id, forKey: entity_key_idCategory)
@@ -263,7 +229,7 @@ extension DatabaseCoreData: DatabaseTopicsDelegate {
     
     func saveTopics(topic: [Topic])  {
         
-        deleteAllDataTopics()
+        // deleteAllDataTopics()
         
         guard let context = managedObjectContext(),
             let entity = NSEntityDescription.entity(forEntityName: entity_nameTopic,
@@ -274,26 +240,29 @@ extension DatabaseCoreData: DatabaseTopicsDelegate {
         
         for dataTopic in topic {
             
-            let taskObject = NSManagedObject(entity: entity,
-                                             insertInto: context)
-            
-//            save(object: taskObject,
-//                 into: context,
-//                 id: dataTopic.id,
-//                 name: dataTopic.title)
-            
-            do {
+            if someEntityExists(id: dataTopic.id, idAtribute: entity_key_idTopic, entityName: entity_nameTopic) {
+                print("Data is already present")
+                return
+            }
+                //else create and save new user
+            else {
                 
-                taskObject.setValue(dataTopic.id, forKey: entity_key_idTopic)
-                taskObject.setValue(dataTopic.title, forKey: entity_key_titleTopic)
-                taskObject.setValue(dataTopic.views, forKey: entity_key_viewsTopic)
-                taskObject.setValue(dataTopic.categoryID, forKey: entity_key_idCategory)
+                let taskObject = NSManagedObject(entity: entity,
+                                                 insertInto: context)
                 
-                try context.save()
-                
-            } catch {
-                print("Error al guardar el topic \(dataTopic.title)")
-                
+                do {
+                    
+                    taskObject.setValue(dataTopic.id, forKey: entity_key_idTopic)
+                    taskObject.setValue(dataTopic.title, forKey: entity_key_titleTopic)
+                    taskObject.setValue(dataTopic.views, forKey: entity_key_viewsTopic)
+                    taskObject.setValue(dataTopic.categoryID, forKey: entity_key_idCategory)
+                    
+                    try context.save()
+                    
+                } catch {
+                    print("Error al guardar el topic \(dataTopic.title)")
+                    
+                }
             }
             
         }
@@ -313,10 +282,6 @@ extension DatabaseCoreData: DatabaseTopicsDelegate {
                     return
             }
             
-//            save(object: dataToUpdate,
-//                 into: context,
-//                 id: dataTopic.id,
-//                 name: dataTopic.title)
             
             do {
                 
@@ -366,8 +331,6 @@ extension DatabaseCoreData: DatabasePostsDelegate {
     
     func savePosts(post: [Post2])  {
         
-        deleteAllDataPosts()
-        
         guard let context = managedObjectContext(),
             let entity = NSEntityDescription.entity(forEntityName: entity_namePost,
                                                     in: context) else {
@@ -377,26 +340,30 @@ extension DatabaseCoreData: DatabasePostsDelegate {
         
         for dataPost in post {
             
-            let postObject = NSManagedObject(entity: entity,
-                                             insertInto: context)
-            
-            //            save(object: taskObject,
-            //                 into: context,
-            //                 id: dataTopic.id,
-            //                 name: dataTopic.title)
-            
-            do {
+            if someEntityExists(id: dataPost.id, idAtribute: entity_key_idPost, entityName: entity_namePost) {
+                print("Data is already present")
+                return
+            }
+                //else create and save new user
+            else {
                 
-                postObject.setValue(dataPost.id, forKey: entity_key_idPost)
-                postObject.setValue(dataPost.cooked, forKey: entity_key_cookdedPost)
-                postObject.setValue(dataPost.canEdit, forKey: entity_key_canEditPost)
-                postObject.setValue(dataPost.topicID, forKey: entity_key_idTopicInPost)
+                let postObject = NSManagedObject(entity: entity,
+                                                 insertInto: context)
+
                 
-                try context.save()
-                
-            } catch {
-                print("Error al guardar el post \(dataPost.cooked)")
-                
+                do {
+                    
+                    postObject.setValue(dataPost.id, forKey: entity_key_idPost)
+                    postObject.setValue(dataPost.cooked, forKey: entity_key_cookdedPost)
+                    postObject.setValue(dataPost.canEdit, forKey: entity_key_canEditPost)
+                    postObject.setValue(dataPost.topicID, forKey: entity_key_idTopicInPost)
+                    
+                    try context.save()
+                    
+                } catch {
+                    print("Error al guardar el post \(dataPost.cooked)")
+                    
+                }
             }
             
         }
@@ -415,12 +382,7 @@ extension DatabaseCoreData: DatabasePostsDelegate {
                 let dataToUpdate = data.first else {
                     return
             }
-            
-            //            save(object: dataToUpdate,
-            //                 into: context,
-            //                 id: dataTopic.id,
-            //                 name: dataTopic.title)
-            
+
             do {
                 
                 dataToUpdate.setValue(dataPost.id, forKey: entity_key_idPost)
@@ -446,6 +408,7 @@ extension DatabaseCoreData: DatabasePostsDelegate {
 private let entity_nameUser = "Users"
 private let entity_key_nameUser = "name"
 private let entity_key_userNameUser = "userName"
+private let entity_key_userId = "idUser"
 
 
 extension DatabaseCoreData: DatabaseUsersDelegate {
@@ -468,7 +431,7 @@ extension DatabaseCoreData: DatabaseUsersDelegate {
     
     func saveUsers(user: [User4])  {
         
-        deleteAllDataUsers()
+        // deleteAllDataUsers()
         
         guard let context = managedObjectContext(),
             let entity = NSEntityDescription.entity(forEntityName: entity_nameUser,
@@ -479,24 +442,29 @@ extension DatabaseCoreData: DatabaseUsersDelegate {
         
         for dataUser in user {
             
-            let userObject = NSManagedObject(entity: entity,
-                                             insertInto: context)
-            
-            //            save(object: taskObject,
-            //                 into: context,
-            //                 id: dataTopic.id,
-            //                 name: dataTopic.title)
-            
-            do {
+            if someEntityExists(id: dataUser.id, idAtribute: entity_key_userId, entityName: entity_nameUser) {
+                print("Data is already present")
+                return
+            }
+                //else create and save new user
+            else {
                 
-                userObject.setValue(dataUser.name, forKey: entity_key_nameUser)
-                userObject.setValue(dataUser.username, forKey: entity_key_userNameUser)
-
+                let userObject = NSManagedObject(entity: entity,
+                                                 insertInto: context)
                 
-                try context.save()
                 
-            } catch {
-                print("Error al guardar el post \(dataUser.name)")
+                do {
+                    
+                    userObject.setValue(dataUser.name, forKey: entity_key_nameUser)
+                    userObject.setValue(dataUser.username, forKey: entity_key_userNameUser)
+                    
+                    
+                    try context.save()
+                    
+                } catch {
+                    print("Error al guardar el post \(dataUser.name)")
+                    
+                }
                 
             }
             
@@ -516,12 +484,7 @@ extension DatabaseCoreData: DatabaseUsersDelegate {
                 let dataToUpdate = data.first else {
                     return
             }
-            
-            //            save(object: dataToUpdate,
-            //                 into: context,
-            //                 id: dataTopic.id,
-            //                 name: dataTopic.title)
-            
+
             do {
                 
                 dataToUpdate.setValue(dataUser.name, forKey: entity_key_nameUser)
