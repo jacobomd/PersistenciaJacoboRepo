@@ -21,8 +21,5 @@ class UserDefaultsPreferences {
     func loadLastDownload() -> Date {
         return UserDefaults.standard.object(forKey: keyUserDateLastDownload) as! Date
     }
-//
-//    func deleteTaskStateSelected() {
-//        UserDefaults.standard.removeObject(forKey: keyUserDateLastDownload)
-//    }
+
 }

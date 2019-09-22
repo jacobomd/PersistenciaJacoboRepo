@@ -11,45 +11,35 @@ import Foundation
 protocol DatabaseCategoriesDelegate {
     func initDefaultDataCategories()
     func deleteAllDataCategories()
-    //func deleteTaskBy(id: Int) -> Bool
     func saveCategories(category: [Category])
-    //func updateCategories(category: [Category])
     func dataCategories() -> Array<CategoryData>
-    //func findTaskBy(id: Int) -> CategoryData?
-    //func findTasksBy(state: TaskState) -> Array<TaskData>
+    
 }
 
 protocol DatabaseTopicsDelegate {
     func initDefaultDataTopics()
     func deleteAllDataTopics()
-    //func deleteTaskBy(id: Int) -> Bool
     func saveTopics(topic: [Topic])
-    func updateTopics(topic: [Topic])
-    //func dataTopics() -> Array<Topic>
-    //func findTaskBy(id: Int) -> CategoryData?
-    //func findTasksBy(state: TaskState) -> Array<TaskData>
+    func dataTopics(id: Int) -> Array<TopicData>
+
 }
 
 protocol DatabasePostsDelegate {
     func initDefaultDataPosts()
     func deleteAllDataPosts()
-    //func deleteTaskBy(id: Int) -> Bool
     func savePosts(post: [Post2])
     func updatePosts(post: [Post2])
-    //func dataTPosts() -> Array<Topic>
-    //func findTaskBy(id: Int) -> CategoryData?
-    //func findTasksBy(state: TaskState) -> Array<TaskData>
+    func dataPosts(id: Int) -> Array<PostData>
+
 }
 
 protocol DatabaseUsersDelegate {
     func initDefaultDataUsers()
     func deleteAllDataUsers()
-    //func deleteTaskBy(id: Int) -> Bool
     func saveUsers(user: [User4])
     func updateUsers(user: [User4])
-    //func dataTPosts() -> Array<Topic>
-    //func findTaskBy(id: Int) -> CategoryData?
-    //func findTasksBy(state: TaskState) -> Array<TaskData>
+    func dataUsers() -> Array<UserData>
+ 
 }
 
 class DataManager {
@@ -97,11 +87,6 @@ extension DataManager {
         return dateLastDownload
     }
 }
-//
-//    func deleteTaskStateSelected() {
-//        mUserPreferences?.deleteTaskStateSelected()
-//    }
-//}
 
 
 // Database Core Data methods Category
@@ -110,22 +95,11 @@ extension DataManager {
          mDatabaseProviderCategories?.saveCategories(category: category)
     }
     
-//    func updateCategories(category: [Category])   {
-//         mDatabaseProviderCategories?.updateCategories(category: category)
-//    }
 
     func dataCategories() -> Array<CategoryData> {
         return mDatabaseProviderCategories?.dataCategories() ?? Array()
     }
-//
-//    func loadTasks(by state: TaskState) -> Array<TaskData> {
-//        return mDatabaseProvider?.findTasksBy(state: state) ?? Array()
-//    }
-    
-//    func delete(task: CategoryData) -> Bool {
-//        return mDatabaseProvider?.deleteTaskBy(id: task.id) ?? false
-//    }
-    
+
     func deleteAllCategories() {
         mDatabaseProviderCategories?.deleteAllDataCategories()
     }
@@ -137,21 +111,11 @@ extension DataManager {
         mDatabaseProviderTopics?.saveTopics(topic: topic)
     }
     
-    func updateTopics(topic: [Topic])   {
-        mDatabaseProviderTopics?.updateTopics(topic: topic)
+    
+    func dataTopics(id: Int) -> Array<TopicData> {
+        return mDatabaseProviderTopics?.dataTopics(id: id) ?? Array()
     }
-    
-//    func loadTasks() -> Array<Topic> {
-//        return mDatabaseProviderTopics?.dataTopics() ?? Array()
-//    }
-    //
-    //    func loadTasks(by state: TaskState) -> Array<TaskData> {
-    //        return mDatabaseProvider?.findTasksBy(state: state) ?? Array()
-    //    }
-    
-    //    func delete(task: CategoryData) -> Bool {
-    //        return mDatabaseProvider?.deleteTaskBy(id: task.id) ?? false
-    //    }
+ 
     
     func deleteAllTopics() {
         mDatabaseProviderTopics?.deleteAllDataTopics()
@@ -167,17 +131,9 @@ extension DataManager {
         mDatabaseProviderPosts?.updatePosts(post: post)
     }
     
-    //    func loadTasks() -> Array<Topic> {
-    //        return mDatabaseProviderTopics?.dataTopics() ?? Array()
-    //    }
-    //
-    //    func loadTasks(by state: TaskState) -> Array<TaskData> {
-    //        return mDatabaseProvider?.findTasksBy(state: state) ?? Array()
-    //    }
-    
-    //    func delete(task: CategoryData) -> Bool {
-    //        return mDatabaseProvider?.deleteTaskBy(id: task.id) ?? false
-    //    }
+    func dataPosts(id: Int) -> Array<PostData> {
+        return mDatabaseProviderPosts?.dataPosts(id: id) ?? Array()
+    }
     
     func deleteAllPosts() {
         mDatabaseProviderPosts?.deleteAllDataPosts()
@@ -193,18 +149,11 @@ extension DataManager {
         mDatabaseProviderUsers?.updateUsers(user: user)
     }
     
-    //    func loadTasks() -> Array<Topic> {
-    //        return mDatabaseProviderTopics?.dataTopics() ?? Array()
-    //    }
-    //
-    //    func loadTasks(by state: TaskState) -> Array<TaskData> {
-    //        return mDatabaseProvider?.findTasksBy(state: state) ?? Array()
-    //    }
-    
-    //    func delete(task: CategoryData) -> Bool {
-    //        return mDatabaseProvider?.deleteTaskBy(id: task.id) ?? false
-    //    }
-    
+    func dataUsers() -> Array<UserData> {
+        return mDatabaseProviderUsers?.dataUsers() ?? Array()
+        
+    }
+ 
     func deleteAllUsers() {
         mDatabaseProviderUsers?.deleteAllDataUsers()
     }

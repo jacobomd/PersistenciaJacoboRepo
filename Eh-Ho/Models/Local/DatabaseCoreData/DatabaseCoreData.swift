@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 
 class DatabaseCoreData {
+    
 
     // MARK: Private methods
     private func managedObjectContext() -> NSManagedObjectContext? {
@@ -69,40 +70,7 @@ class DatabaseCoreData {
         }
     }
     
-    private func categoriesData(from categoryCD: [NSManagedObject]) -> Array<CategoryData> {
-        return categoryCD.compactMap { categoryCD in
-            guard let id = categoryCD.value(forKey: entity_key_idCategory) as? Int,
-                let name = categoryCD.value(forKey: entity_key_nameCategory) as? String else {
-                    return nil
-            }
-            
-            return CategoryData(categoryId: id,
-                                name: name)
-        }
-    }
-    
-    
 }
-    
-
-
-
-    
-    
-    //    private func findData(done: Bool) -> Array<CategoryData> {
-    //        guard let context = managedObjectContext(),
-    //            let data = fetchDataRequest(context: context,
-    //                                        entity: entity_name,
-    //                                        predicate: "\(entity_key_isDone) = \(done)") else {
-    //                                            return Array()
-    //        }
-    //
-    //        return categoriesData(from: data)
-    //    }
-    
-
-    
-
 
 // MARK: - Database Categories delegate extension
 
@@ -179,10 +147,18 @@ extension DatabaseCoreData: DatabaseCategoriesDelegate {
                                             return Array()
         }
         
-        return categoriesData(from: data)
+        return data.compactMap { categoryCD in
+            guard let id = categoryCD.value(forKey: entity_key_idCategory) as? Int,
+                let name = categoryCD.value(forKey: entity_key_nameCategory) as? String else {
+                    return nil
+            }
+            
+            return CategoryData(categoryId: id,
+                                name: name)
+        }
     }
-}
     
+}
 
 
 // MARK: - Database Topics delegate extension
@@ -240,7 +216,7 @@ extension DatabaseCoreData: DatabaseTopicsDelegate {
                     taskObject.setValue(dataTopic.id, forKey: entity_key_idTopic)
                     taskObject.setValue(dataTopic.title, forKey: entity_key_titleTopic)
                     taskObject.setValue(dataTopic.views, forKey: entity_key_viewsTopic)
-                    taskObject.setValue(dataTopic.categoryID, forKey: entity_key_idCategory)
+                    taskObject.setValue(dataTopic.categoryID, forKey: entity_key_idCategoryInTopic)
                     
                     try context.save()
                     
@@ -252,6 +228,26 @@ extension DatabaseCoreData: DatabaseTopicsDelegate {
             
         }
         
+    }
+    
+    func dataTopics(id: Int) -> Array<TopicData> {
+        guard let context = managedObjectContext(),
+            let data = fetchDataRequest(context: context,
+                                        entity: entity_nameTopic,
+                                        predicate: "\(entity_key_idCategory) = \(id)") else {
+                                            return Array()
+        }
+        
+        return data.compactMap { categoryCD in
+            guard let topicId = categoryCD.value(forKey: entity_key_idTopic) as? Int,
+                let title = categoryCD.value(forKey: entity_key_titleTopic) as? String,
+                let categoryId = categoryCD.value(forKey: entity_key_idCategoryInTopic) as? Int,
+                let views = categoryCD.value(forKey: entity_key_viewsTopic) as? Int else {
+                    return nil
+            }
+            
+            return TopicData(topicId: topicId, title: title, categoryId: categoryId, views: views)
+        }
     }
     
     func updateTopics(topic: [Topic])  {
@@ -355,6 +351,27 @@ extension DatabaseCoreData: DatabasePostsDelegate {
         
     }
     
+    func dataPosts(id: Int) -> Array<PostData> {
+        guard let context = managedObjectContext(),
+            let data = fetchDataRequest(context: context,
+                                        entity: entity_namePost,
+                                        predicate: "\(entity_key_idTopicInPost) = \(id)") else {
+                                            return Array()
+        }
+        
+        return data.compactMap { postCD in
+            guard let postId = postCD.value(forKey: entity_key_idTopic) as? Int,
+                let cooked = postCD.value(forKey: entity_key_cookdedPost) as? String,
+                let canEdit = postCD.value(forKey: entity_key_canEditPost) as? Bool,
+                let topicId = postCD.value(forKey: entity_key_idTopicInPost) as? Int else {
+                    return nil
+            }
+            
+            return PostData(postId: postId, cooked: cooked, canEdit: canEdit, topicId: topicId)
+        }
+    }
+    
+    
     func updatePosts(post: [Post2])  {
         
         
@@ -457,6 +474,24 @@ extension DatabaseCoreData: DatabaseUsersDelegate {
         
     }
     
+    func dataUsers() -> Array<UserData> {
+        guard let context = managedObjectContext(),
+            let data = fetchDataRequest(context: context,
+                                        entity: entity_nameUser) else {
+                                            return Array()
+        }
+        
+        return data.compactMap { userCD in
+            guard let idUser = userCD.value(forKey: entity_key_userId) as? Int,
+                let name = userCD.value(forKey: entity_key_nameUser) as? String,
+                let userName = userCD.value(forKey: entity_key_userNameUser) as? String else {
+                    return nil
+            }
+            
+            return UserData(name: name, userName: userName, idUser: idUser)
+        }
+    }
+    
     func updateUsers(user: [User4])  {
         
         
@@ -487,40 +522,3 @@ extension DatabaseCoreData: DatabaseUsersDelegate {
     
 }
 
-
-
-
-
-//    func dataCategories() -> Array<Category> {
-//        guard let context = managedObjectContext(),
-//            let data = fetchDataRequest(context: context,
-//                                        entity: entity_name) else {
-//                                            return Array()
-//        }
-//
-//        return categoriesData(from: data)
-//    }
-//
-//    func findTaskBy(id: Int) -> TaskData? {
-//        guard let context = managedObjectContext(),
-//            let data = fetchDataRequest(context: context,
-//                                        entity: entity_name,
-//                                        predicate: "\(entity_key_id) = \(id)") else {
-//                                            return nil
-//        }
-//
-//        return categoriesData(from: data).first
-//    }
-//
-//    func findTasksBy(state: TaskState) -> Array<TaskData> {
-//        switch state {
-//        case .all:
-//            return data()
-//
-//        case .done:
-//            return findData(done: true)
-//
-//        case .todo:
-//            return findData(done: false)
-//        }
-//    }

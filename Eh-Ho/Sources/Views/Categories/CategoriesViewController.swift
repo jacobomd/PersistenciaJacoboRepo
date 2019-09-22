@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class CategoriesViewController: UIViewController {
     
@@ -61,7 +62,23 @@ class CategoriesViewController: UIViewController {
         categoriesTable.refreshControl = refreshControl
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        if CheckInternet.Connection() == false{
+            self.Alert(Message: "No existe conexion a Internet, por lo tanto se cargaran los datos en modo Offline")
+        }
+    }
+    
+    private func Alert (Message: String){
+        
+        let alert = UIAlertController(title: "Alerta", message: Message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+        
+    }
+    
 }
+
+
 
 extension CategoriesViewController: UITableViewDataSource{
     
@@ -90,8 +107,16 @@ extension CategoriesViewController: UITableViewDataSource{
 
 extension CategoriesViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let id = categories[indexPath.row].id
-        viewModel.didTapInCategory(id: id)
+        
+        
+        if connection {
+            let id = categories[indexPath.row].id
+            viewModel.didTapInCategory(id: id)
+        } else {
+            let id = categoriesCD[indexPath.row].categoryId
+            viewModel.didTapInCategory(id: id)
+        }
+        
     }
 }
 

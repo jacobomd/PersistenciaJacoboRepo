@@ -36,6 +36,7 @@
 		11B3D2AD22E5811F00F81497 /* PostCreateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B3D2AC22E5811F00F81497 /* PostCreateViewModel.swift */; };
 		11BA5183233137CE007A137B /* DatabaseCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BA5182233137CE007A137B /* DatabaseCoreData.swift */; };
 		11BA518723313898007A137B /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BA518623313898007A137B /* DataManager.swift */; };
+		11BA6925233754530035A1F3 /* CheckInternet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BA6924233754530035A1F3 /* CheckInternet.swift */; };
 		11BAFEB322EB35E8004C026E /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BAFEB122EB35E8004C026E /* UsersViewController.swift */; };
 		11BAFEB422EB35E8004C026E /* UsersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11BAFEB222EB35E8004C026E /* UsersViewController.xib */; };
 		11BAFEB622EB35F7004C026E /* UsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BAFEB522EB35F7004C026E /* UsersViewModel.swift */; };
@@ -120,6 +121,7 @@
 		11B3D2AC22E5811F00F81497 /* PostCreateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCreateViewModel.swift; sourceTree = "<group>"; };
 		11BA5182233137CE007A137B /* DatabaseCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseCoreData.swift; sourceTree = "<group>"; };
 		11BA518623313898007A137B /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		11BA6924233754530035A1F3 /* CheckInternet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInternet.swift; sourceTree = "<group>"; };
 		11BAFEB122EB35E8004C026E /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
 		11BAFEB222EB35E8004C026E /* UsersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UsersViewController.xib; sourceTree = "<group>"; };
 		11BAFEB522EB35F7004C026E /* UsersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewModel.swift; sourceTree = "<group>"; };
@@ -514,6 +516,7 @@
 			children = (
 				742A18CF22DE789D004C544D /* UITableViewCellExten.swift */,
 				1121CC2623357EF300411A17 /* MinimTimeData.swift */,
+				11BA6924233754530035A1F3 /* CheckInternet.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -683,6 +686,7 @@
 				742A18D022DE789D004C544D /* UITableViewCellExten.swift in Sources */,
 				1121CC3123369B7B00411A17 /* PostData.swift in Sources */,
 				11A4529122E982D200439C70 /* CreateTopicsViewController.swift in Sources */,
+				11BA6925233754530035A1F3 /* CheckInternet.swift in Sources */,
 				118EF0F522E36F0200F57FA2 /* PostsViewController.swift in Sources */,
 				118EF0F822E36F2900F57FA2 /* PostRouter.swift in Sources */,
 				11E55FB122E23D7C008FD871 /* CategoriesRepository.swift in Sources */,

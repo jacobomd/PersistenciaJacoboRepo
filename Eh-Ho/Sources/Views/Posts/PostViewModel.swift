@@ -41,21 +41,26 @@ class PostViewModel {
     }
     
     
-   private func fetchListPostssByTopic () {
-        postsRepository.getListPostssByTopic(id: id) { [weak self] result in
-            switch result {
-            case .success(let value):
-                self?.view?.showListPostssByTopic(posts: value.postStream.posts)
-                self?.mDataManagerPost.savePosts(post: value.postStream.posts)
-                self?.mDataManagerPost.saveLastDownload()
-                print("llega el valor")
-            case .failure:
-                self?.view?.showError(with: "Error")
+    private func fetchListPostssByTopic () {
+        if CheckInternet.Connection() {
+            postsRepository.getListPostssByTopic(id: id) { [weak self] result in
+                switch result {
+                case .success(let value):
+                    self?.view?.showListPostssByTopic(posts: value.postStream.posts)
+                    self?.mDataManagerPost.savePosts(post: value.postStream.posts)
+                    self?.mDataManagerPost.saveLastDownload()
+                    print("llega el valor")
+                case .failure:
+                    self?.view?.showError(with: "Error")
+                }
             }
+        } else {
+            self.view?.showListPostsCD(post: mDataManagerPost.dataPosts(id: id))
         }
     }
     
     private func updateSingleTopic(title: String) {
+        
         topicRepository.updateSingleTopic(idTopic: id, title: title) { [weak self] result in
             switch result {
             case .success:
@@ -66,6 +71,7 @@ class PostViewModel {
                 print("no ha se ha actualizado el topic")
             }
         }
+        
     }
     
 }

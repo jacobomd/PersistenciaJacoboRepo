@@ -34,6 +34,8 @@ class TopicsViewController: UIViewController {
     
     let viewModel: TopicsViewModel
     var topics: [Topic] = []
+    var topicsCD : [TopicData] = []
+    var connection : Bool = true
     
     init(topicsViewModel: TopicsViewModel) {
         self.viewModel = topicsViewModel
@@ -63,8 +65,14 @@ class TopicsViewController: UIViewController {
 
 extension TopicsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return topics.count
+        
+        if connection {
+            return topics.count
+        } else {
+            return topicsCD.count
+        }
     }
+        
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.identifier, for: indexPath)
@@ -72,11 +80,15 @@ extension TopicsViewController: UITableViewDataSource {
                 return UITableViewCell()
         }
         
-        let title = topics[indexPath.row].title
-        let numVisitas = topics[indexPath.row].views
-        
-        
-        cell.configure(title: title, numVisitas: "Numero de visitas : \(numVisitas)")
+        if connection {
+            let title = topics[indexPath.row].title
+            let numVisitas = topics[indexPath.row].views
+            cell.configure(title: title, numVisitas: "Numero de visitas : \(numVisitas)")
+        } else {
+            let title = topicsCD[indexPath.row].title
+            let numVisitas = topicsCD[indexPath.row].views
+            cell.configure(title: title, numVisitas: "Numero de visitas : \(numVisitas)")
+        }
         
         return cell
     }
@@ -84,8 +96,13 @@ extension TopicsViewController: UITableViewDataSource {
 
 extension TopicsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let id = topics[indexPath.row].id
-        viewModel.didTapInTopic(id: id)
+        if connection {
+            let id = topics[indexPath.row].id
+            viewModel.didTapInTopic(id: id)
+        } else {
+            let id = topicsCD[indexPath.row].topicId
+            viewModel.didTapInTopic(id: id)
+        }
     }
 }
 
@@ -93,9 +110,12 @@ extension TopicsViewController: UITableViewDelegate {
 protocol TopicsViewControllerProtocol: class {
     func showListTopicsByCategory(topics: [Topic])
     func showError(with message: String)
+    func showListTopicsCD(topics: [TopicData])
 }
 
 extension TopicsViewController: TopicsViewControllerProtocol {
+
+    
     func showListTopicsByCategory(topics: [Topic]) {
         self.topics = topics
         self.tableView.reloadData()
@@ -104,5 +124,10 @@ extension TopicsViewController: TopicsViewControllerProtocol {
     func showError(with message: String) {
         //AQUI ENSEÑAMOS ALERTA
         print("ERROR")
+    }
+    
+    func showListTopicsCD(topics: [TopicData]) {
+        connection = false
+        topicsCD = topics
     }
 }

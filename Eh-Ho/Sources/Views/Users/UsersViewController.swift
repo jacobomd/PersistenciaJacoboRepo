@@ -15,6 +15,8 @@ class UsersViewController: UIViewController {
     
     let viewModel: UsersViewModel
     var users: [User4] = []
+    var usersCD : [UserData] = []
+    var connection : Bool = true
     
     init(viewModel: UsersViewModel) {
         self.viewModel = viewModel
@@ -45,7 +47,11 @@ class UsersViewController: UIViewController {
 
 extension UsersViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count
+        if connection {
+            return users.count
+        } else {
+            return usersCD.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -54,12 +60,15 @@ extension UsersViewController: UITableViewDataSource {
                 return UITableViewCell()
         }
         
-        let userName = users[indexPath.row].username
-        let name = users[indexPath.row].name
-
-        
-        
-        cell.configure(userName: userName, name: name)
+        if connection {
+            let userName = users[indexPath.row].username
+            let name = users[indexPath.row].name
+            cell.configure(userName: userName, name: name)
+        } else {
+            let userName = usersCD[indexPath.row].userName
+            let name = usersCD[indexPath.row].name
+            cell.configure(userName: userName, name: name)
+        }
         
         return cell
     }
@@ -67,8 +76,13 @@ extension UsersViewController: UITableViewDataSource {
 
 extension UsersViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       let userName = users[indexPath.row].username
-        viewModel.didTapInTopic(username: userName)
+        if connection {
+            let userName = users[indexPath.row].username
+            viewModel.didTapInTopic(username: userName)
+        } else {
+            let userName = usersCD[indexPath.row].userName
+            viewModel.didTapInTopic(username: userName)
+        }
     }
 }
 
@@ -76,6 +90,7 @@ extension UsersViewController: UITableViewDelegate {
 protocol UsersViewControllerProtocol: class {
     func showListUsers(users: [User4])
     func showError(with message: String)
+    func showListUsersCD(users: [UserData])
 }
 
 extension UsersViewController: UsersViewControllerProtocol {
@@ -87,5 +102,10 @@ extension UsersViewController: UsersViewControllerProtocol {
     func showError(with message: String) {
         //AQUI ENSEÑAMOS ALERTA
         print(message)
+    }
+    
+    func showListUsersCD(users: [UserData]) {
+        connection = false
+        usersCD = users
     }
 }

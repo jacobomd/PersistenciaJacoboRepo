@@ -13,6 +13,8 @@ class PostsViewController: UIViewController {
     @IBOutlet weak var tableViewPosts: UITableView!
     
     var posts : [Post2] = []
+    var postsCD : [PostData] = []
+    var connection : Bool = true
     
     let viewModel : PostViewModel
     
@@ -110,22 +112,35 @@ class PostsViewController: UIViewController {
 }
 
 extension PostsViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return posts.count
+        if connection {
+            return posts.count
+        } else {
+            return postsCD.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableViewPosts.dequeueReusableCell(withIdentifier: UITableViewCell.identifier, for: indexPath)
-        cell.textLabel?.text = posts[indexPath.row].cooked
         
-        id = posts[indexPath.row].topicID
-        editable_topic  = posts[indexPath.row].canEdit
+        
+        
+        if connection {
+            cell.textLabel?.text = posts[indexPath.row].cooked
+            id = posts[indexPath.row].topicID
+            editable_topic  = posts[indexPath.row].canEdit
+        } else {
+            cell.textLabel?.text = postsCD[indexPath.row].cooked
+            id = postsCD[indexPath.row].topicId
+            editable_topic  = postsCD[indexPath.row].canEdit
+        }
         
         if (editable_topic) {
             setupUI()
         }
-
+        
         return cell
     }
     
@@ -141,9 +156,11 @@ extension PostsViewController: UITableViewDelegate {
 protocol PostsViewControllerProtocol: class {
     func showListPostssByTopic(posts: [Post2])
     func showError(with message: String)
+    func showListPostsCD(post: [PostData])
 }
 
 extension PostsViewController: PostsViewControllerProtocol {
+
 
     func showListPostssByTopic(posts: [Post2]) {
         self.posts = posts
@@ -153,5 +170,10 @@ extension PostsViewController: PostsViewControllerProtocol {
     func showError(with message: String) {
         //AQUI ENSEÑAMOS ALERTA
         print("ERROR")
+    }
+    
+    func showListPostsCD(post: [PostData]) {
+        connection = false
+        postsCD = post
     }
 }

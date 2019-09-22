@@ -31,6 +31,8 @@ class CategoriesViewModel {
     }
     
     private func fetchListCategories() {
+        
+        if CheckInternet.Connection() {
         categoriesRepository.getListCategories { [weak self] result  in
             switch result {
             case .success(let value):
@@ -40,11 +42,15 @@ class CategoriesViewModel {
                 self?.mDataManagerCategories.saveLastDownload()
             case .failure:
                 self?.view?.showError(with: "Error")
-                self?.view?.showListCategoriesCD(categories: self?.mDataManagerCategories.dataCategories() ?? Array())
             }
         }
+            
+        } else {
+            print("No hay conexion a internet por lo tanto ...")
+            self.view?.showListCategoriesCD(categories: self.mDataManagerCategories.dataCategories() )
+        }
     }
-    
+        
 
     
 }

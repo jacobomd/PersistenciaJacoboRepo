@@ -33,6 +33,7 @@ class UsersViewModel {
     private func fetchListUsers() {
         print("paso 1")
         
+        if CheckInternet.Connection() {
         usersRepository.getListUsers { [weak self] result  in
             switch result {
             case .success(let value):
@@ -42,6 +43,9 @@ class UsersViewModel {
             case .failure:
                 self?.view?.showError(with: "Error")
             }
+        }
+        } else {
+            self.view?.showListUsersCD(users: mDataManagerUsers.dataUsers())
         }
 
     }

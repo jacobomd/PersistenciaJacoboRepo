@@ -33,6 +33,7 @@ class TopicsViewModel {
     }
     
     private func fetchListTopicsByCategory() {
+        if CheckInternet.Connection() {
        topicsRepository.getListTopicsByCategory(id: id) { [weak self] result in
            switch result {
            case .success(let value):
@@ -43,6 +44,9 @@ class TopicsViewModel {
           case .failure:
                 self?.view?.showError(with: "Error")
            }
+        }
+        } else {
+            self.view?.showListTopicsCD(topics: mDataManagerTopic.dataTopics(id: id))
         }
     }
 }
